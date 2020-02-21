@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Google Books</string>
+    <string name="result_label">Search Results:</string>
+    <string name="search_hint">Enter book name</string>
+    <string name="search_text">search</string>
+    <string name="result_text">Search Results:</string>
+    <string name="def_text">Nurmukhamed</string>
+    <string name="rating">N/A</string>
+
+</resources>
