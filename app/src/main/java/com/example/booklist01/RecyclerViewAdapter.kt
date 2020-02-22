@@ -10,13 +10,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.squareup.picasso.Callback
+import com.squareup.picasso.OkHttpDownloader
 import com.squareup.picasso.Picasso
+import okhttp3.OkHttpClient
+import okhttp3.Protocol
+import java.util.*
 
 class RecyclerViewAdapter(private val mContext: Context,
                           private val items: List<Item>)
@@ -43,16 +48,13 @@ class RecyclerViewAdapter(private val mContext: Context,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item: Item = items[position]
-        val options = RequestOptions()
-            .centerCrop()
-            .placeholder(R.mipmap.ic_launcher_round)
-            .error(R.mipmap.new_icon)
-        /*Picasso.with(mContext).load(item.volumeInfo.imageLinks.thumbnail)
-            .error(R.mipmap.new_icon).into(holder.mImageView)
-        */
+        Log.d("HEHE", "onBind called")
+        val imageLink: String = item.volumeInfo.imageLinks.thumbnail + ".jpg"
 
-        Glide.with(mContext).load(item.volumeInfo.imageLinks.thumbnail).apply(options).into(holder.mImageView)
+        Picasso.with(mContext).load(imageLink).placeholder(R.drawable.icon_google)
+            .error(R.mipmap.new_icon).resize(121,126).centerCrop().into(holder.mImageView)
 
+        Log.d("HEHE",imageLink)
 
         holder.mBookName.text = item.volumeInfo.title
         holder.mAuthor.text = item.volumeInfo.title
